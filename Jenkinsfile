@@ -30,8 +30,12 @@ node ('traccar') {
    //   archive 'target/*.jar'
    //}
    stage('Backup') {
-       sh 'mkdir -p /opt/traccar_backup/`date +"%d-%m-%Y"`'
-       sh 'cp -Rn /opt/traccar /opt/traccar_backup/`date +"%d-%m-%Y"`'
+       if (fileExists('/opt/traccar')) {
+           sh 'mkdir -p /opt/traccar_backup/`date +"%d-%m-%Y"`'
+           sh 'cp -Rn /opt/traccar /opt/traccar_backup/`date +"%d-%m-%Y"`'
+       } else {
+           echo "Traccar not found"
+       }
    }
    stage('Deploy') {
        sh "rm -Rf /opt/traccar/*"
