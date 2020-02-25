@@ -25,10 +25,11 @@ node ('traccar') {
       sh "mkdir -p /opt/traccar/conf"
       sh "mkdir -p /opt/traccar/schema"
       sh "cp schema/* /opt/traccar/schema"
-      sh "cp target/tracker-server-jar-with-dependencies.jar /opt/traccar"
+      sh "cp target/tracker-server.jar /opt/traccar"
       sh "cp setup/traccar.xml /opt/traccar"
       sh "cp setup/default.xml /opt/traccar/conf"
-      sh "echo 'java -jar tracker-server-jar-with-dependencies.jar traccar.xml' > /opt/traccar/startserver.sh"
+      sh "cp -Rf target/lib /opt/traccar"
+      sh "echo 'java -jar tracker-server.jar traccar.xml &' > /opt/traccar/startserver.sh"
       sh "chmod +x /opt/traccar/startserver.sh"
    }
 }
