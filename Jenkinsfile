@@ -41,7 +41,7 @@ node ('traccar') {
        sh "chmod +x /opt/traccar/startserver.sh"
    }
    stage('Sart Server') {
-       directory ('/opt/traccar') {
+       dir('/opt/traccar') {
            sh "java -jar tracker-server.jar traccar.xml &"
        }
    } 
