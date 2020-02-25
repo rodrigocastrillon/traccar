@@ -18,8 +18,12 @@ node ('traccar') {
       }
    }
    stage('Stop Server') {
-       def traccarPID = sh(script: "ps -ef|grep traccar|grep -v grep|awk '{ print \$2 }'", returnStdout: true)
-       sh "kill -9 ${traccarPID}"
+       try {
+           def traccarPID = sh(script: "ps -ef|grep traccar|grep -v grep|awk '{ print \$2 }'", returnStdout: true)
+           sh "kill -9 ${traccarPID}"
+       } catch (e) {
+           echo "Traccar server is not running"
+       }
    }
    //stage('Results') {
    //   junit '**/target/surefire-reports/TEST-*.xml'
