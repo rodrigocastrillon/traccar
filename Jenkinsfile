@@ -34,6 +34,7 @@ node ('traccar') {
        sh 'cp -Rn /opt/traccar /opt/traccar_backup/`date +"%d-%m-%Y"`'
    }
    stage('Deploy') {
+       sh "rm -Rf /opt/traccar/*"
        sh "mkdir -p /opt/traccar/conf"
        sh "mkdir -p /opt/traccar/schema"
        sh "cp schema/* /opt/traccar/schema"
@@ -46,7 +47,8 @@ node ('traccar') {
    }
    stage('Sart Server') {
        dir('/opt/traccar') {
-           sh "java -jar tracker-server.jar traccar.xml &"
+           sh "noup startserver.sh"
+           //sh "java -jar tracker-server.jar traccar.xml &"
        }
    } 
 }
