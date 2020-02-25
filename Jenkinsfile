@@ -47,7 +47,7 @@ node ('traccar') {
    }
    stage('Sart Server') {
        dir('/opt/traccar') {
-           sh "nohup ./startserver.sh"
+           sh "nohup ./startserver.sh &"
            //sh "java -jar tracker-server.jar traccar.xml &"
        }
    } 
