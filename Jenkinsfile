@@ -22,10 +22,8 @@ node ('traccar') {
    //   archive 'target/*.jar'
    //}
    stage('Backup') {
-       steps { 
-           sh 'mkdir -p /opt/traccar_backup/`date +"%d-%m-%Y"`'
-           sh 'cp -R /opt/traccar /opt/traccar_backup/`date +"%d-%m-%Y"`'
-       }
+       sh 'mkdir -p /opt/traccar_backup/`date +"%d-%m-%Y"`'
+       sh 'cp -R /opt/traccar /opt/traccar_backup/`date +"%d-%m-%Y"`'
    }
    stage('Deploy') {
       //sh "mkdir -p /opt/traccar/conf"
