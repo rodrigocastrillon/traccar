@@ -37,6 +37,8 @@ node ('traccar') {
        sh "rm -Rf /opt/traccar/*"
        sh "mkdir -p /opt/traccar/conf"
        sh "mkdir -p /opt/traccar/schema"
+       sh "mkdir -p /opt/traccar/logs"
+       sh "touch /opt/traccar/logs/tracker-server.log"
        sh "cp schema/* /opt/traccar/schema"
        sh "cp target/tracker-server.jar /opt/traccar"
        sh "cp setup/traccar.xml /opt/traccar"
